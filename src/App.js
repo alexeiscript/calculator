@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Button from './components/Button';
+import './css/style.css';
 
 class App extends Component {
 
@@ -17,12 +18,13 @@ class App extends Component {
   }
 
   addToCurrent = (symbol) => {
-    this.SetState({current: this.state.current + symbol})
+    console.log('symbol');
+    this.setState({current: this.state.current + symbol})
   }
 
   render() {
     const buttons = [
-      {symbol: 'C', cols: 1, action: this.reset},
+      {symbol: 'C', cols: 3, action: this.reset},
       {symbol: '/', cols: 1, action: this.addToCurrent},
       {symbol: '7', cols: 1, action: this.addToCurrent},
       {symbol: '8', cols: 1, action: this.addToCurrent},
@@ -38,14 +40,14 @@ class App extends Component {
       {symbol: '+', cols: 1, action: this.addToCurrent},
       {symbol: '0', cols: 1, action: this.addToCurrent},
       {symbol: '.', cols: 1, action: this.addToCurrent},
-      {symbol: '=', cols: 1, action: this.addToCurrent},
+      {symbol: '=', cols: 1, action: this.addToCurrent}
     ];
     return (
       <div className="App">
         <input className="result" type="text" value={this.state.current} />
 
         {buttons.map((btn, i) => {
-          return <Button symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action} />
+          return <Button key={i} symbol={btn.symbol} cols={btn.cols} action={(symbol) => btn.action(symbol)} />
         })}
 
       </div>
