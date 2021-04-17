@@ -35,6 +35,7 @@ class App extends Component {
   calculate = () => {
     let {current, previous} = this.state;
     if (previous.length > 0) {
+      // eslint-disable-next-line no-eval
       current = eval(String(previous[previous.length - 1] + current));
       this.setState({current, previous: [], nextIsReset: true});
     }
